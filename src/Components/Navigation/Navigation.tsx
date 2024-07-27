@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import api from "../../services/api.js";
 import MenuIcon from "../assets/menu-icon.svg";
 import CloseMenu from "../assets/close-menu.svg";
 import Modal from "./Components/Modal";
 
 import * as changeCase from "change-case";
+import axios from "axios";
 
 interface User {
   login: string;
@@ -25,7 +25,9 @@ function Navigation() {
 
   const fetchUser = async () => {
     try {
-      const response = await api.get();
+      const response = await axios.get(
+        "https://api.github.com/users/artuuuuuuuuuur"
+      );
       setUser(response.data);
     } catch (error) {
       console.error("ops! ocorreu um erro: " + error);

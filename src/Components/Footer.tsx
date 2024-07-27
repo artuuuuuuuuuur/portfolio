@@ -1,8 +1,8 @@
-import api from "../services/api.js";
 import InstagramIcon from "./assets/ig-icon.svg";
 import LinkedinIcon from "./assets/linkedin-icon.svg";
 import GithubIcon from "./assets/github-icon.svg";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 interface User {
   login: string;
@@ -14,7 +14,9 @@ function Footer() {
 
   const fetchUser = async () => {
     try {
-      const response = await api.get();
+      const response = await axios.get(
+        "https://api.github.com/users/artuuuuuuuuuur"
+      );
       setUser(response.data);
     } catch (error) {
       console.error("ops! ocorreu um erro: " + error);
@@ -54,8 +56,7 @@ function Footer() {
             </a>
           </div>
           <div
-            className="justify-center text-center border-l border-[#1E2D3D] pl-5 self-center flex w-full
-              flex-grow"
+            className="justify-center text-center border-l border-[#1E2D3D] px-5 self-center"
           >
             {user && user.login ? (
               <a href={`https://github.com/${user.login}`}>

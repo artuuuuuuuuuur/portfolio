@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import api from "../services/api";
 import { useEffect, useState } from "react";
 import * as changeCase from "change-case";
 import Navigation from "./Navigation/Navigation";
+import axios from "axios";
 
 interface User {
   login: string;
@@ -37,7 +37,9 @@ function Header() {
 
   const fetchUser = async () => {
     try {
-      const response = await api.get();
+      const response = await axios.get(
+        "https://api.github.com/users/artuuuuuuuuuur"
+      );
       setUser(response.data);
     } catch (error) {
       console.error("ops! ocorreu um erro: " + error);
