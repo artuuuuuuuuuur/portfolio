@@ -3,6 +3,7 @@ import LinkedinIcon from "./assets/linkedin-icon.svg";
 import GithubIcon from "./assets/github-icon.svg";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Skeleton } from "@mui/material";
 
 interface User {
   login: string;
@@ -55,9 +56,7 @@ function Footer() {
               <img src={LinkedinIcon} alt="LinkedIn" />
             </a>
           </div>
-          <div
-            className="justify-center text-center border-l border-[#1E2D3D] px-5 self-center"
-          >
+          <div className="justify-center text-center border-l border-[#1E2D3D] px-5 self-center">
             {user && user.login ? (
               <a href={`https://github.com/${user.login}`}>
                 <span className="text-center my-2 font-medium flex">
@@ -66,9 +65,12 @@ function Footer() {
                 </span>
               </a>
             ) : (
-              <span className="text-center my-2 font-medium flex">
-                Loading...
-              </span>
+              <Skeleton
+                variant="rectangular"
+                height={30}
+                width={190}
+                animation={"wave"}
+              />
             )}
           </div>
         </div>
@@ -102,7 +104,12 @@ function Footer() {
               </a>
             ) : (
               <span className="text-center my-2 font-medium self-center flex justify-center flex-grow">
-                Loading...
+                <Skeleton
+                  variant="rectangular"
+                  height={25}
+                  width={1}
+                  animation={"wave"}
+                />
               </span>
             )}
           </div>

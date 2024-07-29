@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import * as changeCase from "change-case";
 import Navigation from "./Navigation/Navigation";
 import axios from "axios";
+import { Skeleton } from "@mui/material";
 
 interface User {
   login: string;
@@ -55,10 +56,12 @@ function Header() {
 
   return (
     <header className="border-b border-b-[#1E2D3D] flex text-[#607B96] px-5 space-x-20">
-      {user && user.login && (
+      {user && user.login ? (
         <span className="my-4 min-w-fit mr-4 font-medium">
           {changeCase.kebabCase(user.name)}
         </span>
+      ) : (
+        <Skeleton height={50} width={200} />
       )}
 
       <div className="flex justify-between w-full max-lg:hidden">

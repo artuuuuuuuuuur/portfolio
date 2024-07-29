@@ -5,6 +5,7 @@ import Modal from "./Components/Modal";
 
 import * as changeCase from "change-case";
 import axios from "axios";
+import { Skeleton } from "@mui/material";
 
 interface User {
   login: string;
@@ -48,10 +49,12 @@ function Navigation() {
       <Modal show={showModal} onClose={handleCloseModal} user={user}>
         <header className="border-b border-b-[#1E2D3D] flex px-5 space-x-20">
           <div className="w-full flex justify-between items-center">
-            {user && user.login && (
+            {user && user.login ? (
               <span className="my-4 min-w-fit mr-4 font-medium">
                 {changeCase.kebabCase(user.name)}
               </span>
+            ) : (
+              <Skeleton height={50} width={200} />
             )}
             <button
               onClick={handleCloseModal}
